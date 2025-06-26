@@ -1,28 +1,171 @@
 /* OrderHistory.css */
 .order-history {
-    padding: 20px;
+    padding: 32px 0 32px 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a1a3c 0%, #b31217 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .order-history h1 {
+    color: #8d5252;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+  
+  .order-history .checkout-logo {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 8px rgba(10,26,60,0.18));
   }
   
   .order-item {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    background: black;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(10,26,60,0.13);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 600px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .order-item:hover {
+    box-shadow: 0 8px 32px rgba(179,18,23,0.18);
+    transform: translateY(-4px) scale(1.02);
   }
   
   .order-item h2 {
-    margin: 0 0 10px;
+    margin: 0 0 10px 0;
+    color: #b31217;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
   }
   
   .order-item p {
     margin: 5px 0;
+    color: #0a1a3c;
+    font-size: 1.05rem;
+    font-weight: 500;
   }
   
   .order-item ul {
-    margin: 10px 0 0;
-    padding-left: 20px;
+    margin: 14px 0 0 0;
+    padding-left: 0;
+    list-style: none;
   }
   
   .order-item ul li {
-    list-style-type: disc;
+    background: rgba(10,26,60,0.06);
+    border-radius: 7px;
+    margin-bottom: 8px;
+    padding: 0.7rem 0.9rem;
+    color: #222;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: background 0.18s;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .order-item ul li:hover {
+    background: #e30808;
+    color: #fff;
+  }
+  
+  .order-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  
+  .order-label {
+    color: #b31217;
+    font-weight: 700;
+    margin-right: 0.3rem;
+    font-size: 1.05rem;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+  }
+  
+  .order-value {
+    color: #0a1a3c;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  
+  .order-books-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .order-book-item {
+    background: rgba(10, 26, 60, 0.06);
+    border-radius: 7px;
+    margin-bottom: 8px;
+    padding: 0.7rem 0.9rem;
+    color: #222;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: background 0.18s;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .order-book-item:hover {
+    background: #f5e6e6;
+    color: #b31217;
+  }
+  
+  .book-title {
+    flex: 2;
+    font-weight: 600;
+    color: #0a1a3c;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+  }
+  
+  .book-qty {
+    flex: 1;
+    color: #b31217;
+    font-weight: 700;
+  }
+  
+  .book-price {
+    flex: 1;
+    color: #222;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 700px) {
+    .order-item {
+      max-width: 98vw;
+      padding: 1rem 0.5rem;
+    }
+    .order-history {
+      padding: 18px 0 18px 0;
+    }
   }

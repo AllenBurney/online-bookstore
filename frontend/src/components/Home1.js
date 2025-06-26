@@ -14,6 +14,41 @@ const Home1 = () => {
         <h1>BookVerse</h1>
         <p>A cozy corner for every reader.</p>
 
+        <div
+  id="carouselExampleCaptions"
+  className="carousel slide"
+  data-bs-ride="carousel"
+  data-bs-interval="3000" // Optional: 3 seconds per slide
+>
+  <div className="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img src="https://www.shutterstock.com/image-vector/promo-sale-banner-bookstore-bookshop-260nw-1971130367.jpg" className="d-block w-100" alt="Colorful bookstore sale banner with stacks of books and promotional text, creating a lively and energetic atmosphere" />
+      
+    </div>
+    <div className="carousel-item">
+      <img src="https://pen.org/wp-content/uploads/2024/12/Top-Banned-Books-2024-Banner-jpg.webp" className="d-block w-100" alt="Paperback books displayed in a neat row with Penguin Random House branding, evoking a sense of discovery and excitement for new reads" />
+      
+    </div>
+    <div className="carousel-item">
+      <img src="https://litfind.bookscape.com/wp-content/uploads/2024/05/cover-10.jpg" className="d-block w-100" alt="Brightly illustrated online science library banner featuring books, a smartphone, and educational icons, conveying a modern and engaging learning environment" />
+      
+    </div>
+  </div>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
+
         <div className="promo-container">
           <div className="promo-card">
             <div className="promo-image">
