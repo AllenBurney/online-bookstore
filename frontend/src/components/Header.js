@@ -31,6 +31,7 @@ const Header = () => {
         <Link to="/shop" onClick={() => setMenuOpen(false)}>Shop</Link>
         <Link to="/cart" onClick={() => setMenuOpen(false)}>Cart</Link>
         <Link to="/order-history" onClick={() => setMenuOpen(false)}>Orders</Link>
+        <Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link>
         {!user && (
           <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
         )}
