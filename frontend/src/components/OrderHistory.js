@@ -11,18 +11,20 @@ const OrderHistory = () => {
   useEffect(() => {
     const fetchOrderHistory = async () => {
       try {
+        console.log('Fetching order history for user:', user);
         const response = await axios.get('http://localhost:5000/api/orders', {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user.token}`, // ✅ fixed line
           },
         });
+        console.log('Order history response:', response.data);
         setOrders(response.data);
       } catch (err) {
         console.error('Error fetching order history:', err);
       }
     };
 
-    if (user) {
+    if (user?.token) {
       fetchOrderHistory();
     }
   }, [user]);
@@ -39,6 +41,7 @@ const OrderHistory = () => {
           />
           Order History
         </h1>
+
         {orders.length === 0 ? (
           <p>No orders found.</p>
         ) : (
@@ -61,6 +64,7 @@ const OrderHistory = () => {
                     <span className="order-value">₹{order.total.toFixed(2)}</span>
                   </div>
                 </div>
+
                 <ul className="order-books-list">
                   {order.items
                     .filter((item) => item.bookId)
