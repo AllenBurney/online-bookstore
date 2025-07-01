@@ -14,7 +14,7 @@ const OrderHistory = () => {
         console.log('Fetching order history for user:', user);
         const response = await axios.get('http://localhost:5000/api/orders', {
           headers: {
-            Authorization: `Bearer ${user.token}`, // ✅ fixed line
+            Authorization: `Bearer ${user.token}`, // ✅ Corrected template string
           },
         });
         console.log('Order history response:', response.data);
@@ -24,7 +24,7 @@ const OrderHistory = () => {
       }
     };
 
-    if (user?.token) {
+    if (user && user.token) {
       fetchOrderHistory();
     }
   }, [user]);
@@ -41,7 +41,6 @@ const OrderHistory = () => {
           />
           Order History
         </h1>
-
         {orders.length === 0 ? (
           <p>No orders found.</p>
         ) : (
@@ -64,17 +63,17 @@ const OrderHistory = () => {
                     <span className="order-value">₹{order.total.toFixed(2)}</span>
                   </div>
                 </div>
-
                 <ul className="order-books-list">
-                  {order.items
-                    .filter((item) => item.bookId)
-                    .map((item) => (
-                      <li key={item.bookId._id} className="order-book-item">
-                        <span className="book-title">{item.bookId.title}</span>
-                        <span className="book-qty">× {item.quantity}</span>
-                        <span className="book-price">₹{item.bookId.price}</span>
-                      </li>
-                    ))}
+                  {order.items &&
+                    order.items
+                      .filter((item) => item.bookId)
+                      .map((item) => (
+                        <li key={item.bookId._id} className="order-book-item">
+                          <span className="book-title">{item.bookId.title}</span>
+                          <span className="book-qty">× {item.quantity}</span>
+                          <span className="book-price">₹{item.bookId.price}</span>
+                        </li>
+                      ))}
                 </ul>
               </li>
             ))}
