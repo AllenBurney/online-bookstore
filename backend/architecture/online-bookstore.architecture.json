@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Online Bookstore Architecture",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/AllenBurney/online-bookstore.git",
+      "revision": "4e98bc147b91313179159aad4803568b4187a624"
+    },
+    "viewBox": [1160, 650],
+    "views": [
+      { "id": "catalog", "label": "Browse catalog", "focus": ["customer", "react-spa", "express-api", "mongodb"], "note": "Public catalog, search, genre, sale, and newest-arrival requests reach Book documents." },
+      { "id": "checkout", "label": "Cart and checkout", "focus": ["customer", "react-spa", "express-api", "jwt-guard", "mongodb"], "note": "Authenticated carts, inventory changes, and orders are handled through the REST API." },
+      { "id": "admin", "label": "Administrative access", "focus": ["administrator", "react-spa", "express-api", "jwt-guard", "mongodb"], "note": "The role check gates book management, sales changes, and all-order access." }
+    ]
+  },
+  "components": [
+    { "id": "customer", "type": "external", "label": "Customer", "sublabel": "Browser user", "pos": [50, 320], "size": [150, 72], "sources": [{ "path": "frontend/src/App.js", "line": 25, "label": "Customer routes" }] },
+    { "id": "administrator", "type": "external", "label": "Administrator", "sublabel": "Browser user", "pos": [50, 125], "size": [150, 72], "sources": [{ "path": "frontend/src/App.js", "line": 31, "label": "Admin routes" }] },
+    { "id": "react-spa", "type": "frontend", "label": "React Single-Page App", "sublabel": "React Router, Context API, Axios", "tag": "localhost:3000", "pos": [300, 255], "size": [205, 105], "sources": [{ "path": "frontend/src/App.js", "line": 19, "label": "App routes/providers" }, { "path": "frontend/src/context/CartContext.js", "line": 10, "label": "Axios API calls" }] },
+    { "id": "express-api", "type": "backend", "label": "Express REST API", "sublabel": "Node.js routes: auth, books, cart, orders", "tag": "localhost:5000", "pos": [610, 255], "size": [225, 105], "sources": [{ "path": "backend/server.js", "line": 13, "label": "Express + route mounts" }, { "path": "backend/routes/cartRoutes.js", "line": 79, "label": "Checkout workflow" }] },
+    { "id": "jwt-guard", "type": "security", "label": "JWT Access Control", "sublabel": "Bearer verification and admin role check", "pos": [630, 85], "size": [190, 75], "sources": [{ "path": "backend/middleware/authMiddleware.js", "line": 3, "label": "Authentication middleware" }, { "path": "backend/routes/authRoutes.js", "line": 29, "label": "JWT issuance" }] },
+    { "id": "mongodb", "type": "database", "label": "MongoDB", "sublabel": "Users, Books, Orders via Mongoose", "pos": [960, 255], "size": [185, 105], "sources": [{ "path": "backend/server.js", "line": 20, "label": "Mongoose connection" }, { "path": "backend/models/Order.js", "line": 4, "label": "Order schema" }] }
+  ],
+  "connections": [
+    { "id": "customer-to-ui", "from": "customer", "to": "react-spa", "label": "browse and purchase", "variant": "emphasis", "labelDy": 35 },
+    { "id": "admin-to-ui", "from": "administrator", "to": "react-spa", "label": "manage inventory", "variant": "emphasis", "labelDy": -30 },
+    { "id": "ui-to-api", "from": "react-spa", "to": "express-api", "label": "HTTP JSON /api/*", "variant": "emphasis", "fromSide": "right", "toSide": "left", "labelDy": -25 },
+    { "id": "api-to-auth", "from": "express-api", "to": "jwt-guard", "label": "authenticate and authorize", "variant": "security", "fromSide": "top", "toSide": "bottom", "labelDx": 70 },
+    { "id": "api-to-db", "from": "express-api", "to": "mongodb", "label": "Mongoose CRUD and populated references", "fromSide": "right", "toSide": "left", "labelDy": 80 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Client", "items": ["React Router defines customer and admin screens.", "AuthContext stores user token data in localStorage.", "CartContext makes Bearer-token Axios calls."] },
+    { "dot": "violet", "title": "REST API", "items": ["/api/books supports catalog browsing, search, inventory, and sales.", "/api/cart handles carts and checkout; checkout adjusts inventory and creates an order.", "/api/orders and /api/all-orders expose user and administrative order reads."] },
+    { "dot": "rose", "title": "Security and data", "items": ["The User model hashes passwords with bcrypt before saving.", "Login returns a one-hour JWT carrying the user ID and role.", "Mongoose persists User, Book, and Order documents in MongoDB."] }
+  ]
+}
