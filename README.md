@@ -72,7 +72,7 @@ The backend relies on dependencies defined in the root `package.json` and a spec
    npm start
    # or run 'node server.js'
    ```
-   *The backend should default to `http://localhost:5000`.*
+   *The backend should default to `https://online-bookstore-wy1m.onrender.com`.*
 
 ### 3. Frontend Setup
 1. Open a new terminal and navigate to the `frontend` directory:

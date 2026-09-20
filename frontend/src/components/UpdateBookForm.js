@@ -23,7 +23,7 @@ const UpdateBookForm = ({ book, onUpdate }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/books/${book._id}`,
+        `https://online-bookstore-wy1m.onrender.com/api/books/${book._id}`,
         formData,
         {
           headers: {
