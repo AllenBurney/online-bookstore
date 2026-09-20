@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ✅ SEARCH by title (separate)
+// SEARCH by title (separate)
 router.get('/search', async (req, res) => {
   const { title } = req.query;
   try {
@@ -45,7 +45,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
-// ✅ ADD new book (admin only)
+// ADD new book (admin only)
 router.post('/', authMiddleware, isAdmin, async (req, res) => {
   const {
     title,
