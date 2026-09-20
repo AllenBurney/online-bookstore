@@ -7,7 +7,7 @@ const router = express.Router();
 // Register
 router.post('/register', async (req, res) => {
   const { username, password, role } = req.body;
-  console.log('Registration request received:', { username, password, role }); // Log the request body
+  console.log('Registration request received:', { username, role }); // Log the request body
   try {
     const user = new User({ username, password, role });
     await user.save();
