@@ -12,12 +12,23 @@ const OrderHistory = () => {
     const fetchOrderHistory = async () => {
       try {
         console.log('Fetching order history for user:', user);
-        const response = await axios.get('https://online-bookstore-wy1m.onrender.com/api/orders', {
-          headers: {
-            Authorization: `Bearer ${user.token}`, // ✅ Corrected template string
-          },
-        });
+
+        const response = await axios.get(
+          'https://online-bookstore-wy1m.onrender.com/api/orders',
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
         console.log('Order history response:', response.data);
+
+        // Sort orders by date: newest first
+        response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+
         setOrders(response.data);
       } catch (err) {
         console.error('Error fetching order history:', err);
@@ -32,6 +43,7 @@ const OrderHistory = () => {
   return (
     <>
       <Header />
+
       <div className="order-history">
         <h1>
           <img
@@ -41,6 +53,7 @@ const OrderHistory = () => {
           />
           Order History
         </h1>
+
         {orders.length === 0 ? (
           <p>No orders found.</p>
         ) : (
@@ -52,26 +65,42 @@ const OrderHistory = () => {
                     <span className="order-label">Order ID:</span>
                     <span className="order-value">{order._id}</span>
                   </div>
+
                   <div>
                     <span className="order-label">Date:</span>
                     <span className="order-value">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </span>
                   </div>
+
                   <div>
                     <span className="order-label">Total:</span>
-                    <span className="order-value">₹{order.total.toFixed(2)}</span>
+                    <span className="order-value">
+                      ₹{order.total.toFixed(2)}
+                    </span>
                   </div>
                 </div>
+
                 <ul className="order-books-list">
                   {order.items &&
                     order.items
                       .filter((item) => item.bookId)
                       .map((item) => (
-                        <li key={item.bookId._id} className="order-book-item">
-                          <span className="book-title">{item.bookId.title}</span>
-                          <span className="book-qty">× {item.quantity}</span>
-                          <span className="book-price">₹{item.bookId.price}</span>
+                        <li
+                          key={item.bookId._id}
+                          className="order-book-item"
+                        >
+                          <span className="book-title">
+                            {item.bookId.title}
+                          </span>
+
+                          <span className="book-qty">
+                            × {item.quantity}
+                          </span>
+
+                          <span className="book-price">
+                            ₹{item.bookId.price}
+                          </span>
                         </li>
                       ))}
                 </ul>
