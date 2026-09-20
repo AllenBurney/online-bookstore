@@ -4,7 +4,7 @@ const { authMiddleware, isAdmin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-// ✅ GET all books — supports ?sale=true, ?genre=..., ?sort=newest
+// GET all books — supports ?sale=true, ?genre=..., ?sort=newest
 router.get('/', async (req, res) => {
   try {
     const filter = {};
