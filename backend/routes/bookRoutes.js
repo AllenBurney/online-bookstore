@@ -75,7 +75,7 @@ router.post('/', authMiddleware, isAdmin, async (req, res) => {
   }
 });
 
-// ✅ UPDATE book (admin only)
+// UPDATE book (admin only)
 router.put('/:id', authMiddleware, isAdmin, async (req, res) => {
   const {
     title,
@@ -107,7 +107,7 @@ router.put('/:id', authMiddleware, isAdmin, async (req, res) => {
   }
 });
 
-// ✅ INCREMENT quantity (auth only)
+// INCREMENT quantity (auth only)
 router.put('/:id/increment-quantity', authMiddleware, async (req, res) => {
   const { quantity } = req.body;
   try {
@@ -122,7 +122,7 @@ router.put('/:id/increment-quantity', authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ REDUCE quantity (auth only)
+//  REDUCE quantity (auth only)
 router.put('/:id/reduce-quantity', authMiddleware, async (req, res) => {
   const { quantity } = req.body;
   try {
@@ -141,7 +141,7 @@ router.put('/:id/reduce-quantity', authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ DELETE book (admin only)
+// DELETE book (admin only)
 router.delete('/:id', authMiddleware, isAdmin, async (req, res) => {
   try {
     const book = await Book.findByIdAndDelete(req.params.id);
@@ -153,7 +153,7 @@ router.delete('/:id', authMiddleware, isAdmin, async (req, res) => {
   }
 });
 
-// ✅ PUT book ON SALE (admin only)
+// PUT book ON SALE (admin only)
 router.patch('/:id/sale', authMiddleware, isAdmin, async (req, res) => {
   const { discount } = req.body;
   try {
@@ -170,7 +170,7 @@ router.patch('/:id/sale', authMiddleware, isAdmin, async (req, res) => {
   }
 });
 
-// ✅ REMOVE SALE (admin only)
+// REMOVE SALE (admin only)
 router.patch('/:id/remove-sale', authMiddleware, isAdmin, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
