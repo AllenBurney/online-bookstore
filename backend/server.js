@@ -23,6 +23,9 @@ mongoose.connect(MONGO_URI)
   .catch(err => console.log(err));
 
 // Routes
+app.get('/', (req, res) => {
+    res.send('Bookstore API is running');
+});
 app.use('/api/books', bookRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/auth', authRoutes);
